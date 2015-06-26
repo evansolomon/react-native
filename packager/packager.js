@@ -15,23 +15,25 @@ var http = require('http');
 
 var getFlowTypeCheckMiddleware = require('./getFlowTypeCheckMiddleware');
 
-if (!fs.existsSync(path.resolve(__dirname, '..', 'node_modules'))) {
+try {
+  var chalk = require('chalk');
+  var connect = require('connect');
+  var ReactPackager = require('./react-packager');
+  var blacklist = require('./blacklist.js');
+  var launchEditor = require('./launchEditor.js');
+  var parseCommandLine = require('./parseCommandLine.js');
+  var webSocketProxy = require('./webSocketProxy.js');
+} catch (err) {
   console.log(
     '\n' +
-    'Could not find dependencies.\n' +
+    err.toString() +
+    '\n\n' +
+    'Could not load dependencies.\n' +
     'Ensure dependencies are installed - ' +
     'run \'npm install\' from project root.\n'
   );
   process.exit();
 }
-
-var chalk = require('chalk');
-var connect = require('connect');
-var ReactPackager = require('./react-packager');
-var blacklist = require('./blacklist.js');
-var launchEditor = require('./launchEditor.js');
-var parseCommandLine = require('./parseCommandLine.js');
-var webSocketProxy = require('./webSocketProxy.js');
 
 var options = parseCommandLine([{
   command: 'port',
