@@ -14,9 +14,9 @@ var execFile = require('child_process').execFile;
 var http = require('http');
 var isAbsolutePath = require('absolute-path');
 
-var getFlowTypeCheckMiddleware = require('./getFlowTypeCheckMiddleware');
-
 try {
+  var isAbsolutePath = require('absolute-path');
+  var getFlowTypeCheckMiddleware = require('./getFlowTypeCheckMiddleware');
   var chalk = require('chalk');
   var connect = require('connect');
   var ReactPackager = require('./react-packager');
